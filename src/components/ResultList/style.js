@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { rem } from 'polished';
+import styled from "styled-components"
+import { rem } from "polished"
 
 export const CardComponentStyle = styled.div`
   width: 100%;
@@ -11,14 +11,14 @@ export const CardComponentStyle = styled.div`
   align-items: center;
   color: white;
   font-weight: 700;
-`;
+`
 
 export const Icon = styled.img`
   width: 40px;
   height: 40px;
   border: 50%;
   cursor: pointer;
-`;
+`
 
 export const ResultListStyle = styled.div`
   width: 70%;
@@ -27,10 +27,10 @@ export const ResultListStyle = styled.div`
   justify-content: space-around;
   background-color: #37553df7;
 
-  @media screen and (max-width: 750px){
+  @media screen and (max-width: 750px) {
     display: flex;
     flex-direction: column;
- }
+  }
 `
 export const SearchBarComponent = styled.div`
   margin: ${rem("50px")};
@@ -45,7 +45,7 @@ export const SearchBarComponent = styled.div`
   }
 
   input {
-    padding: ${rem('15px')} ${rem("5px")};
+    padding: ${rem("15px")} ${rem("5px")};
     width: 70%;
     font-size: 18px;
     font-family: "Roboto";
@@ -54,11 +54,11 @@ export const SearchBarComponent = styled.div`
     border: none;
   }
 
-  @media screen and (max-width: 750px){
+  @media screen and (max-width: 750px) {
     width: 80%;
-     input {
+    input {
       margin-bottom: ${rem("5px")};
-     }
+    }
   }
 `
 
@@ -67,4 +67,4 @@ export const InputWrapper = styled.div`
   display: flex;
   align-items: center;
   margin-bottom: ${rem("5px")};
-`;
+`

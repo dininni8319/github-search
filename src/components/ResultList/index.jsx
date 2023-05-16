@@ -1,41 +1,20 @@
 import { useState, useEffect } from "react"
-import {
-  Icon,
-  ResultListStyle,
-  SearchBarComponent,
-  CardComponentStyle,
-  InputWrapper,
-} from "./style"
-import searchIcon from "../../search.svg"
-
-const Card = () => {
-  return (
-    <CardComponentStyle>
-      <h4>- Other Content -</h4>
-    </CardComponentStyle>
-  )
-}
-
-const SearchBar = () => {
-  return (
-    <SearchBarComponent>
-      <InputWrapper>
-        <Icon src={searchIcon} />
-        <input
-          type="text"
-          name="search"
-          id="search"
-          placeholder="Type in a Github username..."
-        />
-      </InputWrapper>
-      <div className="card-wrapper">
-        <Card />
-      </div>
-    </SearchBarComponent>
-  )
-}
+import { ResultListStyle } from "./style"
+import SearchBar from "../UI/SearchBar"
 
 const ResultList = () => {
+  const [searchTerm, setSearchTerm] = useState("")
+  const api_token = process.env.REACT_APP_API_TOKEN
+
+  useEffect(() => {
+    if (searchTerm.length > 4) {
+      fetch(`https://api.github.com/search/users?q=${searchTerm}`)
+        .then((resp) => resp.json())
+        .then((data) => console.log(data))
+        .catch((err) => console.log(err))
+    }
+  }, [searchTerm])
+
   return (
     <ResultListStyle>
       <SearchBar />
