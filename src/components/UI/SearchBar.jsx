@@ -4,15 +4,11 @@ import Card from "./Card"
 import searchIcon from "../../search.svg"
 import ResultCard from "../ResultListUsers"
 
-const SearchBar = () => {
-  const [users, setUsers] = useState([])
+const SearchBar = ({ handleClear, users, searchTerm, setSearchTerm, handleUsersSuggestion }) => {
 
-  useEffect(() => {
-    fetch(`https://api.github.com/users`)
-      .then((resp) => resp.json())
-      .then((data) => setUsers(data))
-      .catch((err) => console.log(err))
-  }, [])
+  const handleChange = event => {
+    setSearchTerm(event.target.value)
+  }
 
   return (
     <SearchBarComponent>
@@ -23,6 +19,12 @@ const SearchBar = () => {
           name="search"
           id="search"
           placeholder="Type in a Github username..."
+          value={searchTerm}
+          onChange={(event) => {
+            handleUsersSuggestion()
+            handleChange(event)
+          }}
+          onClick={handleClear}
         />
         <ResultCard users={users} />
       </InputWrapper>

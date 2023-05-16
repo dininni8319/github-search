@@ -22,7 +22,7 @@ export const Icon = styled.img`
 
 export const ResultListStyle = styled.div`
   width: 70%;
-  min-height: 60vh;
+  min-height: 70vh;
   display: flex;
   justify-content: space-around;
   background-color: #37553df7;
@@ -36,6 +36,7 @@ export const SearchBarComponent = styled.div`
   margin: ${rem("50px")};
   width: 40%;
   height: 20%;
+  min-height: 30vh;
   margin-right: ${rem("5px")};
   margin-bottom: ${rem("5px")};
 
@@ -66,5 +67,5 @@ export const InputWrapper = styled.div`
   background-color: white;
   display: flex;
   align-items: center;
-  margin-bottom: ${rem("5px")};
+  /* margin-bottom: ${rem("5px")}; */
 `
