@@ -23,21 +23,24 @@ export const UserDetailWrapper = styled(InputWrapper)`
   a {
     display: flex;
     flex-direction: row-reverse;
-    justify-content: left;
+    justify-content: space-evenly;
     text-decoration: none;
 
     h3 {
       margin-left: 5px;
+      color: goldenrod;
     }
   }
   
   .user-title {
-    color: black;
+    color: goldenrod;
     font-size: medium;
+    margin-left: 5px;
   } 
 
   &:hover {
     background-color: #59d89f;
     transition: 0.4s ease-in;
+    color: gold;
   }
 `

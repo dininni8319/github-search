@@ -2,7 +2,7 @@ import styled from "styled-components"
 import { rem } from "polished"
 
 export const CardComponentStyle = styled.div`
-  width: 100%;
+  width: ${rem("350px")};
   height: ${rem("60px")};
   opacity: ${props => props.open ? 1 : 0.5 };
   /* background: #ccc; */
@@ -35,7 +35,7 @@ export const ResultListStyle = styled.div`
 `
 export const SearchBarComponent = styled.div`
   margin: ${rem("50px")};
-  width: 40%;
+  width: ${rem("350px")};
   height: 20%;
   min-height: 30vh;
   margin-right: ${rem("5px")};

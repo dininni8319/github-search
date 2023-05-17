@@ -10,7 +10,9 @@ const SearchBar = ({
   searchTerm,
   setSearchTerm,
   open,
-  handleCardOpen
+  handleCardOpen,
+  userId,
+  first
 }) => {
 
   const handleChange = (event) => {
@@ -26,10 +28,12 @@ const SearchBar = ({
       />
       {searchedList?.map((user) => (
         <Card 
+          userId={userId}
           user={user} 
           key={user.id}
           open={open}
           handleCardOpen={handleCardOpen}  
+          first={first}
         />
       ))}
       <ResultCard users={users} handleClear={handleClear} />

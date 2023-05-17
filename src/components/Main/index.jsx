@@ -9,7 +9,8 @@ const Main = () => {
   const [usersSuggestion, setUserSuggestion] = useState([])
   const [searchedList, setSearchedList] = useState([])
   const [debounced, setDebounced] = useState("")
-  const [ open, setOpen ] = useState(false);
+  const [open, setOpen] = useState(false)
+  const [userId, setUserId] = useState(0)
 
   const handleUsersSuggestion = () => {
     let usersSuggestion = users?.filter((el) =>
@@ -17,6 +18,8 @@ const Main = () => {
     )
     setUserSuggestion(usersSuggestion)
   }
+
+  let first = searchedList.find((el) => el.id === searchedList[0]["id"])
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -28,16 +31,19 @@ const Main = () => {
   }, [searchTerm, 500])
 
   const handleClear = (id) => {
-    if (id) {
+    let unique = searchedList?.every((el) => el.id !== id)
+    if (id && unique) {
       let user = users?.filter((user) => user.id === id)
       setSearchedList((prev) => user.concat(prev))
+      
     }
     setUserSuggestion([])
     setSearchTerm("")
   }
 
   const handleCardOpen = (id) => {
-    setOpen(prev => !prev); 
+    setUserId(id)
+    setOpen((prev) => !prev)
   }
 
   useEffect(() => {
@@ -58,6 +64,8 @@ const Main = () => {
         searchedList={searchedList}
         open={open}
         handleCardOpen={handleCardOpen}
+        userId={userId}
+        first={first}
       />
     </ResultListStyle>
   )
