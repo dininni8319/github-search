@@ -1,45 +1,14 @@
-import styled from "styled-components"
-import { rem } from "polished"
-import { InputWrapper, Icon } from "../ResultList/style"
+import { useCallback } from "react"
+import { Icon } from "../ResultList/style"
+import { UserSuggestionCard, UserDetailWrapper } from "./style";
 
-const UserSuggestionCard = styled.div`
-  width: 28%;
-  height: ${rem("20px")};
-  position: absolute;
-  border: 1px solid #ccc;
-  top: 33%;
-  z-index: 999;
-`
-const UserDetailWrapper = styled(InputWrapper)`
- a {
-  display: -webkit-flex; /* Safari */
-  -webkit-flex-direction: row-reverse; /* Safari 6.1+ */
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: left;
-  padding-left: 10px;
-  text-decoration: none;
-  color: inherit;
-  padding: 5px;
-} 
-
-  .user-title {
-    padding-left: 10px;
-    font-size: medium;
-  }
-
-  &:hover {
-    background-color: #59d89f;
-    transition: 0.4s ease-in;
-  }
-`
-
-const ResultListUsers = ({ users }) => {
+const ResultListUsers = ({ users, handleClear }) => {
+  console.log("ResultListUsers")
   return (
     <UserSuggestionCard>
       {users?.slice(0, 5).map((user) => {
         return (
-          <UserDetailWrapper>
+          <UserDetailWrapper key={user.id} onClick={() => handleClear(user.id)}>
             <a href={user.html_url} target="_blank" rel="noopener noreferrer">
               <h3 className="user-title">{user.login}</h3>
               <Icon src={user.avatar_url} />

@@ -1,4 +1,3 @@
-import logo from "./logo.svg"
 import "./App.css"
 import ResultList from "./components/ResultList"
 import styled from 'styled-components';

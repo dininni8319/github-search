@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback, useMemo } from "react"
 import { ResultListStyle } from "./style"
 import SearchBar from "../UI/SearchBar"
 
@@ -7,20 +7,36 @@ const ResultList = () => {
   const api_token = process.env.REACT_APP_API_TOKEN
   const [users, setUsers] = useState([])
   const [usersSuggestion, setUserSuggestion] = useState([])
+  const [searchedList, setSearchedList] = useState([])
+  const [debounced, setDebounced] = useState("")
 
   const handleUsersSuggestion = () => {
-    if (searchTerm.length >= 3) {
+    // console.log("suggestion")
+    if (searchTerm.length > 2) {
       let usersSuggestion = users?.filter((el) =>
         JSON.stringify(el).includes(searchTerm)
       )
-      setUserSuggestion(usersSuggestion)  
+      setUserSuggestion(usersSuggestion)
     }
   }
+  
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      handleUsersSuggestion()
+      setDebounced(searchTerm)
+    }, 800)
 
-  const handleClear = () => {
+    return () => clearTimeout(timeoutId)
+  }, [searchTerm, 800])
+
+  const handleClear = useCallback((id) => {
+    if (id) {
+      let user = users?.filter((user) => user.id === id)
+      setSearchedList((prev) => user.concat(prev))
+    }
     setUserSuggestion([])
     setSearchTerm("")
-  }
+  },[])
 
   useEffect(() => {
     fetch(`https://api.github.com/users`)
@@ -29,15 +45,6 @@ const ResultList = () => {
       .catch((err) => console.log(err))
   }, [])
 
-  useEffect(() => {
-    if (searchTerm.length >= 3) {
-      fetch(`https://api.github.com/search/users?q=${searchTerm}`)
-        .then((resp) => resp.json())
-        .then((data) => console.log(data))
-        .catch((err) => console.log(err))
-    }
-  }, [searchTerm])
-
   return (
     <ResultListStyle>
       <SearchBar
@@ -45,11 +52,8 @@ const ResultList = () => {
         setSearchTerm={setSearchTerm}
         searchTerm={searchTerm}
         handleUsersSuggestion={handleUsersSuggestion}
-        handleClear={handleClear} 
-      />
-      <SearchBar 
-        users={usersSuggestion} 
-        handleClear={handleClear} 
+        handleClear={handleClear}
+        searchedList={searchedList}
       />
     </ResultListStyle>
   )

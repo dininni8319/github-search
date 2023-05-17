@@ -67,5 +67,4 @@ export const InputWrapper = styled.div`
   background-color: white;
   display: flex;
   align-items: center;
-  /* margin-bottom: ${rem("5px")}; */
 `
