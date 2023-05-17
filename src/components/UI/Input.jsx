@@ -1,4 +1,4 @@
-import { InputWrapper, Icon } from "../ResultList/style"
+import { InputWrapper, Icon } from "../Main/style"
 import searchIcon from "../../search.svg"
 
 const Input = ({

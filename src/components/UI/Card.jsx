@@ -1,18 +1,35 @@
-import { memo } from 'react';
-import { CardComponentStyle } from "../ResultList/style"
-import { Icon } from "../ResultList/style"
-import { UserDetailWrapper } from "../ResultListUsers/style"
+import { memo } from "react"
+import { CardComponentStyle } from "../Main/style"
+import { Icon } from "../Main/style"
+import { UserDetailWrapper } from "./ResultListUsers/style"
+import arrowDown from "../../arrow-down.svg"
+import arrowUp from "../../arrow-up.svg"
+import styled from "styled-components"
 
-const Card = ({ user }) => {
-
+export const ArrowIcon = styled(Icon)`
+  width: 25px;
+  color: goldenrod !important;
+`
+export const Button = styled.button`
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+`
+const Card = ({ user, open, handleCardOpen }) => {
   return (
-    <CardComponentStyle>
-      <UserDetailWrapper>
-        <a href={user.html_url} target="_blank" rel="noopener noreferrer">
-          <h3>{user.login}</h3>
-          <Icon src={user.avatar_url} />
-        </a>
-      </UserDetailWrapper>
+    <CardComponentStyle onClick={handleCardOpen} open={open}>
+      {open && (
+        <UserDetailWrapper>
+          <a href={user.html_url} target="_blank" rel="noopener noreferrer">
+            <h4 className="user-title">{user.login}</h4>
+            <Icon src={user.avatar_url} />
+          </a>
+        </UserDetailWrapper>
+      )}
+      <Button>
+        <ArrowIcon src={arrowDown} />
+      </Button>
     </CardComponentStyle>
   )
 }

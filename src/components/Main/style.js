@@ -4,13 +4,14 @@ import { rem } from "polished"
 export const CardComponentStyle = styled.div`
   width: 100%;
   height: ${rem("60px")};
-  opacity: 0.3;
-  background: #ccc;
+  opacity: ${props => props.open ? 1 : 0.5 };
+  /* background: #ccc; */
   display: flex;
-  justify-content: center;
   align-items: center;
   color: white;
   font-weight: 700;
+  background-color: white;
+  margin:${rem("10px")} 0;
 `
 
 export const Icon = styled.img`
@@ -27,10 +28,10 @@ export const ResultListStyle = styled.div`
   justify-content: space-around;
   background-color: #37553df7;
 
-  @media screen and (max-width: 750px) {
+  /* @media screen and (max-width: 750px) {
     display: flex;
     flex-direction: column;
-  }
+  } */
 `
 export const SearchBarComponent = styled.div`
   margin: ${rem("50px")};

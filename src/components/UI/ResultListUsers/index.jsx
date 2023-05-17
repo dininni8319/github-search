@@ -1,5 +1,5 @@
-import { useCallback } from "react"
-import { Icon } from "../ResultList/style"
+import { memo } from "react"
+import { Icon } from "../../Main/style"
 import { UserSuggestionCard, UserDetailWrapper } from "./style";
 
 const ResultListUsers = ({ users, handleClear }) => {
@@ -20,4 +20,4 @@ const ResultListUsers = ({ users, handleClear }) => {
   )
 }
 
-export default ResultListUsers
+export default memo(ResultListUsers)

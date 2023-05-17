@@ -2,41 +2,43 @@ import { useState, useEffect, useCallback, useMemo } from "react"
 import { ResultListStyle } from "./style"
 import SearchBar from "../UI/SearchBar"
 
-const ResultList = () => {
+const Main = () => {
   const [searchTerm, setSearchTerm] = useState("")
   const api_token = process.env.REACT_APP_API_TOKEN
   const [users, setUsers] = useState([])
   const [usersSuggestion, setUserSuggestion] = useState([])
   const [searchedList, setSearchedList] = useState([])
   const [debounced, setDebounced] = useState("")
+  const [ open, setOpen ] = useState(false);
 
   const handleUsersSuggestion = () => {
-    // console.log("suggestion")
-    if (searchTerm.length > 2) {
-      let usersSuggestion = users?.filter((el) =>
-        JSON.stringify(el).includes(searchTerm)
-      )
-      setUserSuggestion(usersSuggestion)
-    }
+    let usersSuggestion = users?.filter((el) =>
+      JSON.stringify(el).includes(debounced)
+    )
+    setUserSuggestion(usersSuggestion)
   }
-  
+
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       handleUsersSuggestion()
       setDebounced(searchTerm)
-    }, 800)
+    }, 500)
 
     return () => clearTimeout(timeoutId)
-  }, [searchTerm, 800])
+  }, [searchTerm, 500])
 
-  const handleClear = useCallback((id) => {
+  const handleClear = (id) => {
     if (id) {
       let user = users?.filter((user) => user.id === id)
       setSearchedList((prev) => user.concat(prev))
     }
     setUserSuggestion([])
     setSearchTerm("")
-  },[])
+  }
+
+  const handleCardOpen = (id) => {
+    setOpen(prev => !prev); 
+  }
 
   useEffect(() => {
     fetch(`https://api.github.com/users`)
@@ -54,9 +56,11 @@ const ResultList = () => {
         handleUsersSuggestion={handleUsersSuggestion}
         handleClear={handleClear}
         searchedList={searchedList}
+        open={open}
+        handleCardOpen={handleCardOpen}
       />
     </ResultListStyle>
   )
 }
 
-export default ResultList
+export default Main

@@ -1,15 +1,16 @@
-import { useState, useEffect } from "react"
-import { SearchBarComponent } from "../ResultList/style"
+import { SearchBarComponent } from "../Main/style"
 import Card from "./Card"
 import Input from "./Input"
-import ResultCard from '../ResultListUsers';
+import ResultCard from "./ResultListUsers"
 
 const SearchBar = ({
+  users,
   searchedList,
   handleClear,
-  users,
   searchTerm,
   setSearchTerm,
+  open,
+  handleCardOpen
 }) => {
 
   const handleChange = (event) => {
@@ -19,17 +20,19 @@ const SearchBar = ({
   return (
     <SearchBarComponent>
       <Input
-        users={users}
         searchTerm={searchTerm}
         handleChange={handleChange}
         handleClear={handleClear}
       />
+      {searchedList?.map((user) => (
+        <Card 
+          user={user} 
+          key={user.id}
+          open={open}
+          handleCardOpen={handleCardOpen}  
+        />
+      ))}
       <ResultCard users={users} handleClear={handleClear} />
-      <div className="card-wrapper">
-        {searchedList?.map((user) => (
-          <Card user={user} key={user.id} />
-        ))}
-      </div>
     </SearchBarComponent>
   )
 }

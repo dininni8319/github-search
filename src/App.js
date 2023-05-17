@@ -1,5 +1,5 @@
 import "./App.css"
-import ResultList from "./components/ResultList"
+import ResultList from "./components/Main"
 import styled from 'styled-components';
 
 const AppContainerStyle = styled.div`
