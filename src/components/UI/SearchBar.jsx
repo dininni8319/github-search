@@ -16,9 +16,10 @@ const SearchBar = ({
   const handleChange = (event) => {
     setSearchTerm(event.target.value)
   }
+  const isSuggestionOpen = users.length > 0
 
   return (
-    <SearchBarComponent>
+    <SearchBarComponent isSuggestionOpen={isSuggestionOpen}>
       <Input
         searchTerm={searchTerm}
         handleChange={handleChange}

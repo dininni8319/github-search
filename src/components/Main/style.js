@@ -40,6 +40,7 @@ export const SearchBarComponent = styled.div`
   min-height: 30vh;
   margin-right: ${rem("5px")};
   margin-bottom: ${rem("5px")};
+  background-color: ${props => props.isSuggestionOpen ? "white" : 'transparent'}  ;
   
   .card-wrapper {
     width: 100%;

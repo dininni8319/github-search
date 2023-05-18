@@ -3,10 +3,11 @@ import { Icon } from "../../Main/style"
 import { UserSuggestionCard, UserDetailWrapper } from "./style"
 
 const ResultListUsers = ({ users, handleClear }) => {
+  let isSuggestionOpen = users.length > 0
   return (
     <>
-      {/* <p className="github-user-t">github users</p> */}
       <UserSuggestionCard>
+      {isSuggestionOpen && <p className="github-user-t">github users</p>}
         {users?.slice(0, 5).map((user) => {
           return (
             <UserDetailWrapper key={user.id} onClick={() => handleClear(user.id)}>
