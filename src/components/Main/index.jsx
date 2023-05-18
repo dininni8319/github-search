@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from "react"
+import { useState, useEffect } from "react"
 import { ResultListStyle } from "./style"
 import SearchBar from "../UI/SearchBar"
 
@@ -16,6 +16,7 @@ const Main = () => {
     let usersSuggestion = users?.filter((el) =>
       JSON.stringify(el).includes(debounced)
     )
+    console.log(usersSuggestion)
     setUserSuggestion(usersSuggestion)
   }
 
@@ -25,17 +26,16 @@ const Main = () => {
     const timeoutId = setTimeout(() => {
       handleUsersSuggestion()
       setDebounced(searchTerm)
-    }, 500)
+    }, 1000)
 
     return () => clearTimeout(timeoutId)
-  }, [searchTerm, 500])
+  }, [searchTerm, 1000])
 
   const handleClear = (id) => {
     let unique = searchedList?.every((el) => el.id !== id)
     if (id && unique) {
       let user = users?.filter((user) => user.id === id)
       setSearchedList((prev) => user.concat(prev))
-      
     }
     setUserSuggestion([])
     setSearchTerm("")
@@ -52,6 +52,17 @@ const Main = () => {
       .then((data) => setUsers(data))
       .catch((err) => console.log(err))
   }, [])
+
+  useEffect(() => {
+    if (debounced.length > 3) {
+      fetch(
+        `https://api.github.com/search/users?&key=${api_token}&q=${debounced}`
+      )
+        .then((resp) => resp.json())
+        .then((data) => setUsers((prev) => [...data.items]))
+        .catch((err) => console.log(err))
+    }
+  }, [debounced])
 
   return (
     <ResultListStyle>

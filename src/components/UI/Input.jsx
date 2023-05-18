@@ -1,10 +1,12 @@
 import { InputWrapper, Icon } from "../Main/style"
 import searchIcon from "../../search.svg"
+import ResultCard from "./ResultListUsers"
 
 const Input = ({
   searchTerm,
   handleChange,
   handleClear,
+  users,
 }) => {
   return (
     <InputWrapper>
@@ -20,6 +22,7 @@ const Input = ({
         }}
         onClick={handleClear}
       />
+      <ResultCard users={users} handleClear={handleClear} />
     </InputWrapper>
   )
 }

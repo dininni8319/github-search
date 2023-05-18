@@ -1,6 +1,6 @@
 import "./App.css"
 import ResultList from "./components/Main"
-import styled from 'styled-components';
+import styled from "styled-components"
 
 const AppContainerStyle = styled.div`
   height: 100vh;
@@ -11,7 +11,6 @@ const AppContainerStyle = styled.div`
 function App() {
   return (
     <AppContainerStyle>
-      
       <ResultList />
     </AppContainerStyle>
   )

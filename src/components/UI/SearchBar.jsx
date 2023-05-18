@@ -1,10 +1,8 @@
 import { SearchBarComponent } from "../Main/style"
 import Card from "./Card"
 import Input from "./Input"
-import ResultCard from "./ResultListUsers"
 
 const SearchBar = ({
-  users,
   searchedList,
   handleClear,
   searchTerm,
@@ -12,9 +10,9 @@ const SearchBar = ({
   open,
   handleCardOpen,
   userId,
-  first
+  first,
+  users
 }) => {
-
   const handleChange = (event) => {
     setSearchTerm(event.target.value)
   }
@@ -25,18 +23,19 @@ const SearchBar = ({
         searchTerm={searchTerm}
         handleChange={handleChange}
         handleClear={handleClear}
+        users={users}
       />
       {searchedList?.map((user) => (
-        <Card 
+        <Card
           userId={userId}
-          user={user} 
+          user={user}
           key={user.id}
           open={open}
-          handleCardOpen={handleCardOpen}  
+          handleCardOpen={handleCardOpen}
           first={first}
         />
       ))}
-      <ResultCard users={users} handleClear={handleClear} />
+      
     </SearchBarComponent>
   )
 }
