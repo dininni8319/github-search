@@ -11,7 +11,7 @@ export const CardComponentStyle = styled.div`
   color: white;
   font-weight: 700;
   background-color: white;
-  margin: ${rem("10px")} 0;
+  margin: ${rem("5px")} 0;
 `
 
 export const Icon = styled.img`
@@ -37,7 +37,7 @@ export const SearchBarComponent = styled.div`
   margin-left: ${rem("10px")};
   width: 30%;
   height: 20%;
-  min-height: 30vh;
+  min-height: 20vh;
   margin-right: ${rem("5px")};
   background-color: ${props => props.isSuggestionOpen ? "white" : 'transparent'}  ;
   
@@ -54,6 +54,7 @@ export const SearchBarComponent = styled.div`
     font-weight: 200;
     outline: none;
     border: none;
+    margin-bottom: 5px;
   }
 
   @media screen and (max-width: 750px) {

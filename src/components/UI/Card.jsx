@@ -10,9 +10,13 @@ export const ArrowIcon = styled(Icon)`
   width: 25px;
   color: goldenrod;
   position: absolute;
-  left: ${(props) => (props.open ? rem("20px") : rem("100px"))};
+  left: ${(props) => (props.open ? rem("20px") : rem("150px"))};
   top: ${(props) => (props.open ? rem("20px") : rem("-20px"))};
   display: ${(props) => (props.open || props.isFirst ? "none" : "block")};
+
+  @media screen and (max-width: 750px) {
+    left: ${(props) => (props.open ? rem("20px") : rem("130px"))};
+  }
 `
 export const Button = styled.button`
   background-color: transparent;

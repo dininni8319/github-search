@@ -30,15 +30,17 @@ const Main = () => {
     return () => clearTimeout(timeoutId)
   }, [searchTerm, 1000])
 
-  const handleClear = (id) => {
+  const handleClear = (event, id) => {
+    // event.preventDefault()
     let unique = searchedList?.every((el) => el.id !== id)
+    console.log(id, 'user id ', unique);
     if (id && unique) {
       let user = users?.filter((user) => user.id === id)
       setSearchedList((prev) => user.concat(prev))
-    }
-    setUserSuggestion([])
-    setUsers([])
+    } 
+
     setSearchTerm("")
+    setUserSuggestion([])
   }
 
   const handleCardOpen = (id) => {
@@ -47,19 +49,12 @@ const Main = () => {
   }
 
   useEffect(() => {
-    fetch(`https://api.github.com/users`)
-      .then((resp) => resp.json())
-      .then((data) => setUsers(data))
-      .catch((err) => console.log(err))
-  }, [])
-
-  useEffect(() => {
     if (debounced.length > 3) {
       fetch(
         `https://api.github.com/search/users?&key=${api_token}&q=${debounced}`
       )
         .then((resp) => resp.json())
-        .then((data) => setUsers((prev) => [...data.items]))
+        .then((data) => setUsers(data.items))
         .catch((err) => console.log(err))
     }
   }, [debounced])
