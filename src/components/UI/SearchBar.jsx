@@ -4,6 +4,7 @@ import Input from "./Input"
 
 const SearchBar = ({
   searchedList,
+  setUserSuggestion,
   handleClear,
   searchTerm,
   setSearchTerm,
@@ -25,6 +26,7 @@ const SearchBar = ({
         handleChange={handleChange}
         handleClear={handleClear}
         users={users}
+        setUserSuggestion={setUserSuggestion}
       />
       {searchedList?.map((user) => (
         <Card

@@ -16,7 +16,6 @@ const Main = () => {
     let usersSuggestion = users?.filter((el) =>
       JSON.stringify(el).includes(debounced)
     )
-    console.log(usersSuggestion)
     setUserSuggestion(usersSuggestion)
   }
 
@@ -38,6 +37,7 @@ const Main = () => {
       setSearchedList((prev) => user.concat(prev))
     }
     setUserSuggestion([])
+    setUsers([])
     setSearchTerm("")
   }
 
@@ -67,6 +67,7 @@ const Main = () => {
   return (
     <ResultListStyle>
       <SearchBar
+        setUserSuggestion={setUserSuggestion}
         users={usersSuggestion}
         setSearchTerm={setSearchTerm}
         searchTerm={searchTerm}

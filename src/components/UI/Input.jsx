@@ -7,6 +7,7 @@ const Input = ({
   handleChange,
   handleClear,
   users,
+  setUserSuggestion,
 }) => {
   return (
     <InputWrapper>
@@ -22,7 +23,11 @@ const Input = ({
         }}
         onClick={handleClear}
       />
-      <ResultCard users={users} handleClear={handleClear} />
+      <ResultCard
+        users={users}
+        handleClear={handleClear}
+        setUserSuggestion={setUserSuggestion}
+      />
     </InputWrapper>
   )
 }

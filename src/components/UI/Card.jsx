@@ -10,7 +10,7 @@ export const ArrowIcon = styled(Icon)`
   width: 25px;
   color: goldenrod;
   position: absolute;
-  left: ${(props) => (props.open ? rem("20px") : rem("160px"))};
+  left: ${(props) => (props.open ? rem("20px") : rem("100px"))};
   top: ${(props) => (props.open ? rem("20px") : rem("-20px"))};
   display: ${(props) => (props.open || props.isFirst ? "none" : "block")};
 `
