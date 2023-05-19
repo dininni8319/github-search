@@ -31,25 +31,27 @@ const Main = () => {
     return () => clearTimeout(timeoutId)
   }, [searchTerm, 1000])
 
-  const handleSearched = (id) => {
+  const handleSearched = (user) => {
     try {
-      let unique = searchedList?.every((el) => el.id !== id)
+      let unique = searchedList?.some((el) => el.id === user.id)
 
-      if (id && unique) {
-        let user = users?.filter((user) => user.id === id)
-        if (user) {
-          console.log('ddhdh');
-          setSearchedList(prev => user.concat(searchedList))
+      if (user.id && !unique) {
+          let userFromSugg = usersSuggestion?.filter((el) => el.id === user.id)
+          setSearchedList(prev => userFromSugg .concat(prev))
           setSearchTerm("")
           setUserSuggestion([])
-        } 
+    
       } else {
         setSearchTerm("")
         setUserSuggestion([])
         throw new Error("Something went wrong")
       }
+      setSearchTerm("")
+          setUserSuggestion([])
     } catch (err) {
       setError(err.message);
+      setSearchTerm("")
+      setUserSuggestion([])
     }
     return
   }

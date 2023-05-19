@@ -3,17 +3,15 @@ import { Icon } from "../../Main/style"
 import { UserSuggestionCard, UserDetailWrapper } from "./style"
 
 const ResultListUsers = ({ users, handleClear, handleSearched }) => {
-  let isSuggestionOpen = users.length > 0
+  let isSuggestionOpen = users.length > 0 || false
   return (
       <UserSuggestionCard>
         {isSuggestionOpen && <p className="github-user-t">github users</p>}
         {users?.slice(0, 5).map((user) => {
           return (
-            <UserDetailWrapper key={user.id} onClick={() => {
-              handleSearched(user.id)
-              handleClear()
-            }}>
+            <UserDetailWrapper key={user.id}>
                   <a
+                    onClick={() => handleSearched(user)}
                     href={user.html_url}
                     target="_blank"
                     rel="noopener noreferrer"
