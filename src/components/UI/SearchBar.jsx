@@ -3,30 +3,34 @@ import Card from "./Card"
 import Input from "./Input"
 
 const SearchBar = ({
-  searchedList,
-  setUserSuggestion,
-  handleClear,
-  searchTerm,
-  setSearchTerm,
   open,
-  handleCardOpen,
   userId,
   first,
-  users
+  users,
+  handleClear,
+  handleCardOpen,
+  handleSearched,
+  searchedList,
+  setUserSuggestion,
+  searchTerm,
+  setSearchTerm,
+  clearError,
 }) => {
+
   const handleChange = (event) => {
     setSearchTerm(event.target.value)
   }
-  const isSuggestionOpen = users.length > 0
 
   return (
-    <SearchBarComponent isSuggestionOpen={isSuggestionOpen}>
+    <SearchBarComponent>
       <Input
+        clearError={clearError}
         searchTerm={searchTerm}
         handleChange={handleChange}
         handleClear={handleClear}
         users={users}
         setUserSuggestion={setUserSuggestion}
+        handleSearched={handleSearched}
       />
       {searchedList?.map((user) => (
         <Card

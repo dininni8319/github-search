@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { ResultListStyle } from "./style"
+import { AppContainerListStyle, ErrorMessage } from "./style"
 import SearchBar from "../UI/SearchBar"
 
 const Main = () => {
@@ -11,6 +11,7 @@ const Main = () => {
   const [debounced, setDebounced] = useState("")
   const [open, setOpen] = useState(false)
   const [userId, setUserId] = useState(0)
+  const [error, setError] = useState(null)
 
   const handleUsersSuggestion = () => {
     let usersSuggestion = users?.filter((el) =>
@@ -30,19 +31,34 @@ const Main = () => {
     return () => clearTimeout(timeoutId)
   }, [searchTerm, 1000])
 
-  const handleClear = (event, id) => {
-    // event.preventDefault()
-    let unique = searchedList?.every((el) => el.id !== id)
-    console.log(id, 'user id ', unique);
-    if (id && unique) {
-      let user = users?.filter((user) => user.id === id)
-      setSearchedList((prev) => user.concat(prev))
-    } 
+  const handleSearched = (id) => {
+    try {
+      let unique = searchedList?.every((el) => el.id !== id)
 
+      if (id && unique) {
+        let user = users?.filter((user) => user.id === id)
+        if (user) {
+          console.log('ddhdh');
+          setSearchedList(prev => user.concat(searchedList))
+          setSearchTerm("")
+          setUserSuggestion([])
+        } 
+      } else {
+        setSearchTerm("")
+        setUserSuggestion([])
+        throw new Error("Something went wrong")
+      }
+    } catch (err) {
+      setError(err.message);
+    }
+    return
+  }
+
+  const handleClear = () => {
     setSearchTerm("")
     setUserSuggestion([])
   }
-
+  const clearError = () => setError(null)
   const handleCardOpen = (id) => {
     setUserId(id)
     setOpen((prev) => !prev)
@@ -60,21 +76,24 @@ const Main = () => {
   }, [debounced])
 
   return (
-    <ResultListStyle>
+    <AppContainerListStyle>
       <SearchBar
+        clearError={clearError}
         setUserSuggestion={setUserSuggestion}
         users={usersSuggestion}
         setSearchTerm={setSearchTerm}
         searchTerm={searchTerm}
-        handleUsersSuggestion={handleUsersSuggestion}
-        handleClear={handleClear}
         searchedList={searchedList}
         open={open}
+        handleUsersSuggestion={handleUsersSuggestion}
+        handleClear={handleClear}
         handleCardOpen={handleCardOpen}
+        handleSearched={handleSearched}
         userId={userId}
         first={first}
       />
-    </ResultListStyle>
+      {error && <ErrorMessage>{error}</ErrorMessage>}
+    </AppContainerListStyle>
   )
 }
 

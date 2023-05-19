@@ -1,19 +1,6 @@
 import styled from "styled-components"
 import { rem } from "polished"
 
-export const CardComponentStyle = styled.div`
-  width: 100%;
-  height: ${rem("60px")};
-  opacity: ${(props) => (props.open ? 1 : 0.5)};
-  /* background: #ccc; */
-  display: flex;
-  align-items: center;
-  color: white;
-  font-weight: 700;
-  background-color: white;
-  margin: ${rem("5px")} 0;
-`
-
 export const Icon = styled.img`
   width: 40px;
   height: 40px;
@@ -21,11 +8,12 @@ export const Icon = styled.img`
   cursor: pointer;
 `
 
-export const ResultListStyle = styled.div`
-  width: 70%;
+export const AppContainerListStyle = styled.div`
+  width: 50vw;
   min-height: 60vh;
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
   background-color: #37553df7;
 
   @media screen and (max-width: 750px) {
@@ -35,11 +23,11 @@ export const ResultListStyle = styled.div`
 export const SearchBarComponent = styled.div`
   margin-top: ${rem("50px")};
   margin-left: ${rem("10px")};
-  width: 30%;
+  width: 20vw;
   height: 20%;
   min-height: 20vh;
   margin-right: ${rem("5px")};
-  background-color: ${props => props.isSuggestionOpen ? "white" : 'transparent'}  ;
+  /* background-color: ${props => props.issuggestionopen ? "white" : 'transparent'}; */
   
   .card-wrapper {
     width: 100%;
@@ -48,7 +36,7 @@ export const SearchBarComponent = styled.div`
 
   input {
     padding: ${rem("15px")} ${rem("5px")};
-    width: 70%;
+    width: 100%;
     font-size: 18px;
     font-family: "Roboto";
     font-weight: 200;
@@ -58,7 +46,7 @@ export const SearchBarComponent = styled.div`
   }
 
   @media screen and (max-width: 750px) {
-    width: 80%;
+    width: 80vw;
   }
 `
 
@@ -66,4 +54,23 @@ export const InputWrapper = styled.div`
   background-color: white;
   display: flex;
   align-items: center;
+`
+export const CardComponentStyle = styled.div`
+  width: 100%;
+  height: ${rem("60px")};
+  opacity: ${(props) => (props.open ? 1 : 0.5)};
+  /* background: #ccc; */
+  display: flex;
+  align-items: center;
+  color: white;
+  font-weight: 300;
+  background-color: white;
+  margin: ${rem("5px")} 0;
+`
+
+export const ErrorMessage = styled.p`
+  color: red; 
+  font-weight: 400;
+  margin-top: 10px;
+  font-size: 22px;
 `

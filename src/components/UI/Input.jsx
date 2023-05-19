@@ -8,6 +8,8 @@ const Input = ({
   handleClear,
   users,
   setUserSuggestion,
+  handleSearched,
+  clearError
 }) => {
   return (
     <InputWrapper>
@@ -20,13 +22,16 @@ const Input = ({
         value={searchTerm}
         onChange={(event) => {
           handleChange(event)
+          clearError()
         }}
         onClick={handleClear}
+
       />
       <ResultCard
         users={users}
         handleClear={handleClear}
         setUserSuggestion={setUserSuggestion}
+        handleSearched={handleSearched}
       />
     </InputWrapper>
   )
