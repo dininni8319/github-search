@@ -7,7 +7,7 @@ export const UserSuggestionCard = styled.div`
   height: ${rem("20px")};
   position: absolute;
   z-index: 999;
-  top: 30%;
+  top: 50px;
 
   p {
     min-width: 100%;
@@ -18,15 +18,17 @@ export const UserSuggestionCard = styled.div`
     margin: 0;
   }
 
-  @media screen and (max-width: 750px) {
+  @media screen and (max-width: 768px) {
     width: 80vw;
-    top: 32%;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1400px) {
+    width: 30vw;
   }
 `
 
 export const UserDetailWrapper = styled(InputWrapper)`
   width: 100%;
-
   a {
     display: flex;
     flex-direction: row-reverse;

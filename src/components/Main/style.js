@@ -27,7 +27,7 @@ export const SearchBarComponent = styled.div`
   height: 20%;
   min-height: 20vh;
   margin-right: ${rem("5px")};
-  /* background-color: ${props => props.issuggestionopen ? "white" : 'transparent'}; */
+  position: relative;
   
   .card-wrapper {
     width: 100%;
@@ -47,6 +47,10 @@ export const SearchBarComponent = styled.div`
 
   @media screen and (max-width: 750px) {
     width: 80vw;
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1400px) {
+    width: 30vw;
   }
 `
 

@@ -7,7 +7,7 @@ const ResultListUsers = ({ users, handleClear, handleSearched }) => {
   return (
       <UserSuggestionCard>
         {isSuggestionOpen && <p className="github-user-t">github users</p>}
-        {users?.slice(0, 5).map((user) => {
+        {users.length > 0 && users?.slice(0, 5).map((user) => {
           return (
             <UserDetailWrapper key={user.id}>
                   <a
@@ -16,7 +16,7 @@ const ResultListUsers = ({ users, handleClear, handleSearched }) => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <h3 className="user-title">{user.login}</h3>
+                   {user.login && <h3 className="user-title">{user.login}</h3>}
                     <Icon src={user.avatar_url} />
                   </a>
             </UserDetailWrapper>
